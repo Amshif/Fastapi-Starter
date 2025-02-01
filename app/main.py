@@ -1,5 +1,5 @@
 from fastapi import FastAPI,Depends,HTTPException
-from app.routes.user import user
+from app.routes.tenant import tenant
 from app.routes.auth import auth
 from app.middleware import log_request_middleware
 from app.exception_handler import http_exception_handler,general_exception_handler
@@ -18,5 +18,5 @@ app.add_exception_handler(Exception, general_exception_handler)
 async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
     return {"token": token}
 
-app.include_router(user)
+app.include_router(tenant)
 app.include_router(auth)

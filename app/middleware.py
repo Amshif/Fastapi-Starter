@@ -1,7 +1,9 @@
 import http
 import time
 
-from fastapi import Request
+from fastapi import  HTTPException, Request
+from fastapi.responses import JSONResponse
+from datetime import datetime
 
 from app.logger import logger
 
@@ -26,3 +28,5 @@ async def log_request_middleware(request: Request, call_next):
         status_phrase=""
     logger.info(f'{host}:{port} - "{request.method} {url}" {response.status_code} {status_phrase} {formatted_process_time}ms')
     return response
+
+
